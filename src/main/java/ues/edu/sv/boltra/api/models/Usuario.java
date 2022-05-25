@@ -34,6 +34,10 @@ public class Usuario {
 	@Temporal(TemporalType.DATE)
 	@Column(name = "FECHA_CREACION")
 	private Date fechaCreacion;
+	@Column(name = "CORREO")
+	private String correo;
+	@Column(name = "TELEFONO")
+	private String telefono;
 	@Column(name = "ACTIVO")
 	private Boolean activo;
 
@@ -41,7 +45,8 @@ public class Usuario {
 	}
 
 	public Usuario(Long idUsario, String nombre, String apellido, String userName, String userPass,
-			String codigoDocumento, String tipoDocumento, Date fechaCreacion, Boolean activo) {
+			String codigoDocumento, String tipoDocumento, Date fechaCreacion, String correo, String telefono,
+			Boolean activo) {
 		this.idUsario = idUsario;
 		this.nombre = nombre;
 		this.apellido = apellido;
@@ -50,6 +55,8 @@ public class Usuario {
 		this.codigoDocumento = codigoDocumento;
 		this.tipoDocumento = tipoDocumento;
 		this.fechaCreacion = fechaCreacion;
+		this.correo = correo;
+		this.telefono = telefono;
 		this.activo = activo;
 	}
 
@@ -117,6 +124,22 @@ public class Usuario {
 		this.fechaCreacion = fechaCreacion;
 	}
 
+	public String getCorreo() {
+		return correo;
+	}
+
+	public void setCorreo(String correo) {
+		this.correo = correo;
+	}
+
+	public String getTelefono() {
+		return telefono;
+	}
+
+	public void setTelefono(String telefono) {
+		this.telefono = telefono;
+	}
+
 	public Boolean getActivo() {
 		return activo;
 	}
@@ -129,7 +152,8 @@ public class Usuario {
 	public String toString() {
 		return "Usuario [idUsario=" + idUsario + ", nombre=" + nombre + ", apellido=" + apellido + ", userName="
 				+ userName + ", userPass=" + userPass + ", codigoDocumento=" + codigoDocumento + ", tipoDocumento="
-				+ tipoDocumento + ", fechaCreacion=" + fechaCreacion + ", activo=" + activo + "]";
+				+ tipoDocumento + ", fechaCreacion=" + fechaCreacion + ", correo=" + correo + ", telefono=" + telefono
+				+ ", activo=" + activo + "]";
 	}
-
+	
 }
