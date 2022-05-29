@@ -15,7 +15,7 @@ public class CompetenciaCandidato {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "ID_COMPETENCIAC")
-	private Long IdCompetencia;
+	private Long idCompetencia;
 	@ManyToOne
 	@JoinColumn(name = "ID_CANDIDATO")
 	private Candidato candidato;
@@ -27,17 +27,17 @@ public class CompetenciaCandidato {
 	}
 
 	public CompetenciaCandidato(Long idCompetencia, Candidato candidato, Competencias competencia) {
-		IdCompetencia = idCompetencia;
+		this.idCompetencia = idCompetencia;
 		this.candidato = candidato;
 		this.competencia = competencia;
 	}
 
 	public Long getIdCompetencia() {
-		return IdCompetencia;
+		return idCompetencia;
 	}
 
 	public void setIdCompetencia(Long idCompetencia) {
-		IdCompetencia = idCompetencia;
+		this.idCompetencia = idCompetencia;
 	}
 
 	public Candidato getCandidato() {
@@ -58,7 +58,7 @@ public class CompetenciaCandidato {
 
 	@Override
 	public String toString() {
-		return "CompetenciaCandidato [IdCompetencia=" + IdCompetencia + ", candidato=" + candidato + ", competencia="
+		return "CompetenciaCandidato [IdCompetencia=" + idCompetencia + ", candidato=" + candidato + ", competencia="
 				+ competencia + "]";
 	}
 

@@ -67,10 +67,10 @@ public class UsuarioController extends AbsController<Usuario, UsuarioRepository,
 		eliminarEntida(id);
 	}
 
-	@RequestMapping(path = "/login", method = RequestMethod.GET)
+	@RequestMapping(path = "/login", method = RequestMethod.POST)
 	public ResponseEntity<?> login(@RequestBody Usuario entida) {
 		Usuario user = getServis().iniciarSesion(entida);
-		if (entida == null) {
+		if (user == null) {
 			Map<String, Object> response = new HashMap<>();
 			response.put("codigo", 1001);
 			response.put("mensaje", "objeto no encontrado.");
