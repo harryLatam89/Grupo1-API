@@ -1,6 +1,9 @@
 package ues.edu.sv.boltra.api.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -10,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import ues.edu.sv.boltra.api.models.RolUsuario;
+import ues.edu.sv.boltra.api.models.Usuario;
 import ues.edu.sv.boltra.api.repository.RolUsuarioRepository;
 import ues.edu.sv.boltra.api.service.RolUsuarioService;
 
@@ -30,6 +34,11 @@ public class RolUsuarioController extends AbsController<RolUsuario, RolUsuarioRe
 	protected RolUsuario setId(RolUsuario entida, Long id) {
 		entida.setIdRol(id);
 		return entida;
+	}
+
+	@RequestMapping(path = "/usuario", method = RequestMethod.POST)
+	public ResponseEntity<?> buscarRolesDeUsuario(@RequestBody Usuario entida) {
+		return new ResponseEntity<List<RolUsuario>>(getServis().obtenerRolesDeUsuario(entida), HttpStatus.OK);
 	}
 
 	@RequestMapping(path = "/lista", method = RequestMethod.GET)

@@ -15,6 +15,7 @@ import ues.edu.sv.boltra.api.models.CompetenciaCandidato;
 import ues.edu.sv.boltra.api.models.CompetenciaVacante;
 import ues.edu.sv.boltra.api.models.Competencias;
 import ues.edu.sv.boltra.api.models.Contratante;
+import ues.edu.sv.boltra.api.models.Rol;
 import ues.edu.sv.boltra.api.models.Usuario;
 import ues.edu.sv.boltra.api.models.Vacantes;
 import ues.edu.sv.boltra.api.service.AreaLaboralService;
@@ -23,6 +24,7 @@ import ues.edu.sv.boltra.api.service.CompetenciaCandidatoService;
 import ues.edu.sv.boltra.api.service.CompetenciaService;
 import ues.edu.sv.boltra.api.service.CompetenciaVacanteService;
 import ues.edu.sv.boltra.api.service.ContratanteService;
+import ues.edu.sv.boltra.api.service.RolService;
 import ues.edu.sv.boltra.api.service.UsuarioService;
 import ues.edu.sv.boltra.api.service.VacanteService;
 
@@ -53,6 +55,9 @@ public class PruebasController {
 
 	@Autowired
 	private CompetenciaCandidatoService competenciaCandidatoService;
+
+	@Autowired
+	private RolService rolService;
 
 	@RequestMapping(path = "/prueba", method = RequestMethod.GET)
 	public ResponseEntity<?> datosPrueba() {
@@ -88,6 +93,14 @@ public class PruebasController {
 		competenciaVacanteService.crearEntida(competenciaVacanteDos);
 		CompetenciaCandidato competenciaCandidato = new CompetenciaCandidato(1L, candidato, competencias);
 		competenciaCandidatoService.crearEntida(competenciaCandidato);
+
+		Rol rolUno = new Rol(1L, "Administrador");
+		Rol rolDos = new Rol(2L, "Contratante");
+		Rol rolTres = new Rol(3L, "Candidato");
+		rolService.crearEntida(rolUno);
+		rolService.crearEntida(rolDos);
+		rolService.crearEntida(rolTres);
+
 		return new ResponseEntity<String>("OKAY", HttpStatus.OK);
 	}
 }

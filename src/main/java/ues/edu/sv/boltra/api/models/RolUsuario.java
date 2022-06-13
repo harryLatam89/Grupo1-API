@@ -10,12 +10,12 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "ROL")
+@Table(name = "ROL_USUARIO")
 public class RolUsuario {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "ID_ROL")
+	@Column(name = "ID_ROL_USER")
 	private Long idRol;
 
 	@ManyToOne
