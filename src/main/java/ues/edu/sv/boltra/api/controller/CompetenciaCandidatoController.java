@@ -1,8 +1,6 @@
 package ues.edu.sv.boltra.api.controller;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -16,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import ues.edu.sv.boltra.api.models.Candidato;
 import ues.edu.sv.boltra.api.models.CompetenciaCandidato;
+import ues.edu.sv.boltra.api.models.Competencias;
 import ues.edu.sv.boltra.api.repository.CompetenciaCandidatoRepository;
 import ues.edu.sv.boltra.api.service.CompetenciaCandidatoService;
 
@@ -47,15 +46,7 @@ public class CompetenciaCandidatoController
 
 	@RequestMapping(path = "/candidato", method = RequestMethod.POST)
 	public ResponseEntity<?> listarCompetenciasDeCandidato(@RequestBody Candidato candidato, BindingResult result) {
-		List<CompetenciaCandidato> lista = getServis().buscarPorCandidato(candidato);
-		if (lista == null || lista.isEmpty()) {
-			Map<String, Object> response = new HashMap<>();
-			response.put("codigo", 1003);
-			response.put("mensaje", "objeto no encontrado.");
-			response.put("descripcion", "No se encontraron competencia para el candidato");
-			return new ResponseEntity<Map<String, Object>>(response, HttpStatus.BAD_REQUEST);
-		}
-		return new ResponseEntity<List<CompetenciaCandidato>>(lista, HttpStatus.OK);
+		return new ResponseEntity<List<Competencias>>(getServis().buscarPorCandidato(candidato), HttpStatus.OK);
 	}
 
 	@RequestMapping(path = "/{id}", method = RequestMethod.GET)

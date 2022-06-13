@@ -1,9 +1,6 @@
 package ues.edu.sv.boltra.api.controller;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -12,34 +9,25 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import ues.edu.sv.boltra.api.models.CompetenciaVacante;
-import ues.edu.sv.boltra.api.models.Competencias;
-import ues.edu.sv.boltra.api.models.Vacantes;
-import ues.edu.sv.boltra.api.repository.CompetenciaVacanteRepository;
-import ues.edu.sv.boltra.api.service.CompetenciaVacanteService;
+import ues.edu.sv.boltra.api.models.Rol;
+import ues.edu.sv.boltra.api.repository.RolRepository;
+import ues.edu.sv.boltra.api.service.RolService;
 
 @RestController
-@RequestMapping(path = "/competenciavacante")
-public class CompetenciaVacanteController
-		extends AbsController<CompetenciaVacante, CompetenciaVacanteRepository, CompetenciaVacanteService>
-		implements AbsInterface<CompetenciaVacante> {
+@RequestMapping(path = "/rol")
+public class RolController extends AbsController<Rol, RolRepository, RolService> implements AbsInterface<Rol> {
 
 	@Autowired
-	private CompetenciaVacanteService service;
+	private RolService service;
 
 	@Override
-	protected CompetenciaVacanteService getServis() {
+	protected RolService getServis() {
 		return this.service;
 	}
 
-	@RequestMapping(path = "/vacante", method = RequestMethod.POST)
-	public ResponseEntity<?> listaVacantesPorContratante(@RequestBody Vacantes vacante, BindingResult result) {
-		return new ResponseEntity<List<Competencias>>(getServis().listarPorVacante(vacante), HttpStatus.OK);
-	}
-
 	@Override
-	protected CompetenciaVacante setId(CompetenciaVacante entida, Long id) {
-		entida.setIdCompetencia(id);
+	protected Rol setId(Rol entida, Long id) {
+		entida.setIdRol(id);
 		return entida;
 	}
 
@@ -57,14 +45,14 @@ public class CompetenciaVacanteController
 
 	@RequestMapping(method = RequestMethod.POST)
 	@Override
-	public ResponseEntity<?> crearEntidad(@RequestBody CompetenciaVacante entida, BindingResult result) {
+	public ResponseEntity<?> crearEntidad(@RequestBody Rol entida, BindingResult result) {
 		return crearEntida(entida, result);
 	}
 
 	@RequestMapping(path = "/{id}", method = RequestMethod.PUT)
 	@Override
-	public ResponseEntity<?> actualizarEntidad(@PathVariable(name = "id") Long id,
-			@RequestBody CompetenciaVacante entida, BindingResult result) {
+	public ResponseEntity<?> actualizarEntidad(@PathVariable(name = "id") Long id, @RequestBody Rol entida,
+			BindingResult result) {
 		return actualizarEntida(id, entida, result);
 	}
 
@@ -73,4 +61,5 @@ public class CompetenciaVacanteController
 	public void eliminarEntidad(@PathVariable(name = "id") Long id) {
 		eliminarEntida(id);
 	}
+
 }

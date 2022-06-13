@@ -14,7 +14,7 @@ import javax.persistence.Table;
 public class CompetenciaVacante {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "ID_COMPETENCIAC")
+	@Column(name = "ID_COMPETENCIAV")
 	private Long idCompetencia;
 	@ManyToOne
 	@JoinColumn(name = "ID_VACANTE")
